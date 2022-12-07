@@ -1,8 +1,8 @@
 #include "LedControl.h"
+#include "Symbols.h"
 #define iterationDelay 500
 
 LedControl lc = LedControl(11,13,10,6);//(Pin digital, Pin reloj, Pin CS, No de dispositivos) -> (DIN,CLK,CS,1-8)
-
 byte screen1[8] = {
   B00000000,
   B00000000, 
@@ -69,140 +69,6 @@ byte screen6[8] = {
   B00000000  
 };
 
-byte hA[8] = {
-  B00000000,
-  B11111111, 
-  B11111111,   
-  B10000000,
-  B10000000,
-  B11111111,
-  B11111111,
-  B00000000  
-};
-
-byte hB[8] = {
-  B00000000,
-  B11111111, 
-  B11111111,  
-  B00000001,
-  B00000001,
-  B11111111,
-  B11111111,
-  B00000000  
-};
-
-byte oA[8] = {
-  B00000000,
-  B11111100, 
-  B00111110,   
-  B00000111,
-  B00000111,
-  B00111110,
-  B11111100,
-  B00000000  
-};
-
-byte oB[8] = {
-  B00000000,
-  B00111111, 
-  B01111100,   
-  B11100000,
-  B11100000,
-  B01111100,
-  B00111111,
-  B00000000  
-};
-
-byte lA[8] = {
-  B00000000,
-  B11111111, 
-  B11111111,   
-  B11111111,
-  B00000000,
-  B00000000,
-  B00000000,
-  B00000000  
-};
-
-byte lB[8] = {
-  B00000000,
-  B11111111, 
-  B11111111,   
-  B11111111,
-  B11100000,
-  B11100000,
-  B11100000,
-  B00000000  
-};
-
-byte aA[8] = {
-  B00000000,
-  B11111000, 
-  B11111111,   
-  B10000111,
-  B10000111,
-  B11111111,
-  B11111000,
-  B00000000  
-};
-
-byte aB[8] = {
-  B00000000,
-  B11111111,
-  B11111111,  
-  B00000011,
-  B00000011,
-  B11111111,
-  B11111111,
-  B00000000  
-};
-
-byte dosA[8] = {
-  B0111100,
-  B01111110, 
-  B00001111,   
-  B00000111,
-  B10001111,
-  B11111100,
-  B01111100,
-  B00000000
-};
-
-byte dosB[8] = {
-  B11100000,
-  B11100000, 
-  B11111000,   
-  B11111110,
-  B11100111,
-  B11100001,
-  B11100000,
-  B00000000
-};
-
-byte tresA[8] = {
-  B0111100,
-  B01111110, 
-  B00001111,   
-  B00000111,
-  B10001111,
-  B11111100,
-  B01111100,
-  B00000000
-};
-
-byte tresB[8] = {
-  B00011110,
-  B01111110, 
-  B11110000,   
-  B11100000,
-  B11110001,
-  B00111111,
-  B00111110,
-  B00000000  
-};
-
-byte completeTextA[50];
-byte completeTextB[50];
 byte screenAux1[50];
 byte screenAux2[50];
 byte screenAux3[50];
@@ -222,61 +88,52 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  fill();
+    fill();
+    cleanScreens();
 }
 
 void fill(){
+  //Llenar Matriz general con el mensaje
   for(int i = 0; i < 4; i++){
-    if(i == 0){
+    if(i == 1){
       for(int j = 0; j < 8; j++){
-        completeTextA[sizeFilled] = hA[j];
         screenAux1[sizeFilled] = hA[j];
         screenAux2[sizeFilled] = hA[j];
         screenAux3[sizeFilled] = hA[j];
 
-        completeTextB[sizeFilled] = hB[j];
         screenAux4[sizeFilled] = hB[j];
         screenAux5[sizeFilled] = hB[j];
         screenAux6[sizeFilled] = hB[j];
         sizeFilled++;
       }
-    }
-    else if(i == 1){
+    }else if(i == 2){
       for(int j = 0; j < 8; j++){
-        completeTextA[sizeFilled] = oA[j];
         screenAux1[sizeFilled] = oA[j];
         screenAux2[sizeFilled] = oA[j];
         screenAux3[sizeFilled] = oA[j];
 
-        completeTextB[sizeFilled] = oB[j];
         screenAux4[sizeFilled] = oB[j];
         screenAux5[sizeFilled] = oB[j];
         screenAux6[sizeFilled] = oB[j];
         sizeFilled++;
       }
-    }
-    else if(i == 2){
+    }else if(i == 3){
       for(int j = 0; j < 8; j++){
-        completeTextA[sizeFilled] = lA[j];
         screenAux1[sizeFilled] = lA[j];
         screenAux2[sizeFilled] = lA[j];
         screenAux3[sizeFilled] = lA[j];
 
-        completeTextB[sizeFilled] = lB[j];
         screenAux4[sizeFilled] = lB[j];
         screenAux5[sizeFilled] = lB[j];
         screenAux6[sizeFilled] = lB[j];
         sizeFilled++;
       }
-    }
-    else if(i == 3){
+    }else if(i == 4){
       for(int j = 0; j < 8; j++){
-        completeTextA[sizeFilled] = aA[j];
         screenAux1[sizeFilled] = aA[j];
         screenAux2[sizeFilled] = aA[j];
         screenAux3[sizeFilled] = aA[j];
 
-        completeTextB[sizeFilled] = aB[j];
         screenAux4[sizeFilled] = aB[j];
         screenAux5[sizeFilled] = aB[j];
         screenAux6[sizeFilled] = aB[j];
@@ -288,8 +145,8 @@ void fill(){
 }
 
 void animateText(){
-  int sizeCompleteText = sizeof(completeTextA)/sizeof(completeTextA[0]);
-  for(int i = 0; i < 32; i++){
+  //int sizeCompleteText = sizeof(completeTextA)/sizeof(completeTextA[0]);
+  for(int i = 0; i < sizeFilled + 32; i++){
     //Mostrar matriz 
     for(int j = 0; j < 8; j++){ 
       lc.setRow(0,j,screen1[j]);//(No de dispositivo, fila, valor)
@@ -308,7 +165,7 @@ void animateText(){
       }else{
         screen1[j] = screenAux1[0];
         screen4[j] = screenAux4[0];
-        for(int k = 0; k < sizeCompleteText; k++){
+        for(int k = 0; k < sizeFilled; k++){
           screenAux1[k] = screenAux1[k+1];
           screenAux4[k] = screenAux4[k+1];
         }
@@ -322,14 +179,14 @@ void animateText(){
         }else{
           screen2[j] = screenAux2[0];
           screen5[j] = screenAux5[0];
-          for(int k = 0; k < sizeCompleteText; k++){
+          for(int k = 0; k < sizeFilled; k++){
             screenAux2[k] = screenAux2[k+1];
             screenAux5[k] = screenAux5[k+1];
           }
         }
       }
     }
-    if(i > 14){
+    if(i > 15){
       for(int j = 0; j < 8; j++){
         if(j < 7){
           screen3[j] = screen3[j+1];
@@ -337,7 +194,7 @@ void animateText(){
         }else{
           screen3[j] = screenAux3[0];
           screen6[j] = screenAux6[0];
-          for(int k = 0; k < sizeCompleteText; k++){
+          for(int k = 0; k < sizeFilled; k++){
             screenAux3[k] = screenAux3[k+1];
             screenAux6[k] = screenAux6[k+1];
           }
@@ -346,6 +203,26 @@ void animateText(){
     }  
     delay(iterationDelay);  
   }
+}
+
+void cleanScreens(){
+  for(int i = 0; i < 50; i++){
+    screenAux1[i] = B00000000;
+    screenAux2[i] = B00000000;
+    screenAux3[i] = B00000000;
+    screenAux4[i] = B00000000;
+    screenAux5[i] = B00000000;
+    screenAux6[i] = B00000000;
+  }
+  for(int i = 0; i < 8; i++){
+    screen1[i] = B00000000;
+    screen2[i] = B00000000;
+    screen3[i] = B00000000;
+    screen4[i] = B00000000;
+    screen5[i] = B00000000;
+    screen6[i] = B00000000;
+  }
+  sizeFilled = 0;
 }
 
 /*void animateText(){
