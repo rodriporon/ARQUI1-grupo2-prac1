@@ -1,6 +1,6 @@
 #include "LedControl.h"
 #include "Symbols.h"
-#define iterationDelay 500
+#define iterationDelay 250
 
 LedControl lc = LedControl(11,13,10,6);//(Pin digital, Pin reloj, Pin CS, No de dispositivos) -> (DIN,CLK,CS,1-8)
 byte screen1[8] = {
@@ -76,9 +76,11 @@ byte screenAux4[50];
 byte screenAux5[50];
 byte screenAux6[50];
 int sizeFilled = 0;
+int textSize = 0;
 
 void setup() {
   // put your setup code here, to run once:
+  Serial.begin(9600);
   for(int i = 0; i < 6; i++){
     lc.shutdown(i,false);//(No de dispositivo, estado inicial)
     lc.setIntensity(i,4);//(No de dispositivo, intensidad de luz)
@@ -86,93 +88,60 @@ void setup() {
   }
 }
 
-void cleanScreens() {
-  for(int i = 0; i < 50; i++){
-    screenAux1[i] = B00000000;
-    screenAux2[i] = B00000000;
-    screenAux3[i] = B00000000;
-    screenAux4[i] = B00000000;
-    screenAux5[i] = B00000000;
-    screenAux6[i] = B00000000;
-  }
-  for(int i = 0; i < 8; i++){
-    screen1[i] = B00000000;
-    screen2[i] = B00000000;
-    screen3[i] = B00000000;
-    screen4[i] = B00000000;
-    screen5[i] = B00000000;
-    screen6[i] = B00000000;
-  }
-  sizeFilled = 0;
-}
-
 void loop() {
   // put your main code here, to run repeatedly:
-    fill();
+    String completeText = "HOLA123";
+    textSize = completeText.length();
+    char textArray[textSize + 1];
+    completeText.toCharArray(textArray, textSize + 1);
+    fill(textArray);
     cleanScreens();
 }
 
-void fill() {
+void fill(char textArray[]) {
   //Llenar Matriz general con el mensaje
-  for(int i = 0; i < 6; i++){
-    if(i == 1){
-      for(int j = 0; j < 8; j++){
-        screenAux1[sizeFilled] = A_46[j];
-        screenAux2[sizeFilled] = A_46[j];
-        screenAux3[sizeFilled] = A_46[j];
-
-        screenAux4[sizeFilled] = B_46[j];
-        screenAux5[sizeFilled] = B_46[j];
-        screenAux6[sizeFilled] = B_46[j];
-        sizeFilled++;
-      }
-    }else if(i == 2){
-      for(int j = 0; j < 8; j++){
-        screenAux1[sizeFilled] = A_47[j];
-        screenAux2[sizeFilled] = A_47[j];
-        screenAux3[sizeFilled] = A_47[j];
-
-        screenAux4[sizeFilled] = B_47[j];
-        screenAux5[sizeFilled] = B_47[j];
-        screenAux6[sizeFilled] = B_47[j];
-        sizeFilled++;
-      }
-    }else if(i == 3){
-      for(int j = 0; j < 8; j++){
-        screenAux1[sizeFilled] = A_48[j];
-        screenAux2[sizeFilled] = A_48[j];
-        screenAux3[sizeFilled] = A_48[j];
-
-        screenAux4[sizeFilled] = B_48[j];
-        screenAux5[sizeFilled] = B_48[j];
-        screenAux6[sizeFilled] = B_48[j];
-        sizeFilled++;
-      }
-    }else if(i == 4){
-      for(int j = 0; j < 8; j++){
-        screenAux1[sizeFilled] = A_49[j];
-        screenAux2[sizeFilled] = A_49[j];
-        screenAux3[sizeFilled] = A_49[j];
-
-        screenAux4[sizeFilled] = B_49[j];
-        screenAux5[sizeFilled] = B_49[j];
-        screenAux6[sizeFilled] = B_49[j];
-        sizeFilled++;
-      }
-    } else if(i == 5){
-      for(int j = 0; j < 8; j++){
-        screenAux1[sizeFilled] = A_50[j];
-        screenAux2[sizeFilled] = A_50[j];
-        screenAux3[sizeFilled] = A_50[j];
-
-        screenAux4[sizeFilled] = B_50[j];
-        screenAux5[sizeFilled] = B_50[j];
-        screenAux6[sizeFilled] = B_50[j];
-        sizeFilled++;
-      }
+  for(int i = 0; i < textSize; i++){
+    char singleSymbol = textArray[i];
+    if(singleSymbol == ' '){single(A_32,B_32);
+    }else if(singleSymbol == '!'){single(A_33,B_33);
+    }else if(singleSymbol == '"'){single(A_34,B_34);
+    }else if(singleSymbol == '#'){single(A_35,B_35);
+    }else if(singleSymbol == '$'){single(A_36,B_36);
+    }else if(singleSymbol == '%'){single(A_37,B_37);
+    }else if(singleSymbol == '&'){single(A_38,B_38);
+    }else if(singleSymbol == '\''){single(A_39,B_39);
+    }else if(singleSymbol == '('){single(A_40,B_40);
+    }else if(singleSymbol == ')'){single(A_41,B_41);
+    }else if(singleSymbol == '*'){single(A_42,B_42);
+    }else if(singleSymbol == '+'){single(A_43,B_43);
+    }else if(singleSymbol == ','){single(A_44,B_44);
+    }else if(singleSymbol == '-'){single(A_45,B_45);
+    }else if(singleSymbol == '.'){single(A_46,B_46);
+    }else if(singleSymbol == '/'){single(A_47,B_47);
+    }else if(singleSymbol == '0'){single(A_48,B_48);
+    }else if(singleSymbol == '1'){single(A_49,B_49);
+    }else if(singleSymbol == '2'){single(A_50,B_50);
+    }else if(singleSymbol == '3'){single(A_51,B_51);
+    }else if(singleSymbol == 'A'){single(A_65,B_65);
+    }else if(singleSymbol == 'H'){single(A_72,B_72);
+    }else if(singleSymbol == 'L'){single(A_76,B_76);
+    }else if(singleSymbol == 'O'){single(A_79,B_79);
     }
   }
   animateText();
+}
+
+void single(byte A[],byte B[]){
+  for(int j = 0; j < 8; j++){
+    screenAux1[sizeFilled] = A[j];
+    screenAux2[sizeFilled] = A[j];
+    screenAux3[sizeFilled] = A[j];
+        
+    screenAux4[sizeFilled] = B[j];
+    screenAux5[sizeFilled] = B[j];
+    screenAux6[sizeFilled] = B[j];
+    sizeFilled++;
+  }
 }
 
 void animateText() {
@@ -236,7 +205,25 @@ void animateText() {
   }
 }
 
-
+void cleanScreens() {
+  for(int i = 0; i < 50; i++){
+    screenAux1[i] = B00000000;
+    screenAux2[i] = B00000000;
+    screenAux3[i] = B00000000;
+    screenAux4[i] = B00000000;
+    screenAux5[i] = B00000000;
+    screenAux6[i] = B00000000;
+  }
+  for(int i = 0; i < 8; i++){
+    screen1[i] = B00000000;
+    screen2[i] = B00000000;
+    screen3[i] = B00000000;
+    screen4[i] = B00000000;
+    screen5[i] = B00000000;
+    screen6[i] = B00000000;
+  }
+  sizeFilled = 0;
+}
 
 /*void animateText(){
   for(int i = 0; i < 32; i++){
