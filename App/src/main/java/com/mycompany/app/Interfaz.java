@@ -101,7 +101,8 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            Arduino.sendData("hola mundo");
+            String message = jTextArea1.getText();
+            Arduino.sendData(message);
         } catch (ArduinoException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SerialPortException ex) {

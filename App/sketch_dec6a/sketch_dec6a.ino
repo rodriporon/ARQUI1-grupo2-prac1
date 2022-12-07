@@ -1,5 +1,5 @@
 
-char dataIn = "";
+String serialText = "";
 
 void setup() {
   Serial.begin(9600);
@@ -7,10 +7,14 @@ void setup() {
 }
 
 void loop() {
-  if (Serial.available()) {
-    dataIn = Serial.read();
-
-    Serial.println("Recibiendo datos");
+  while(Serial.available()){
+    delay(10);
+    char c = Serial.read();
+      serialText += c;
+    
   }
+
+  Serial.println(serialText);  
+
 
 }
