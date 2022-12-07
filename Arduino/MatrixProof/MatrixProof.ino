@@ -86,57 +86,88 @@ void setup() {
   }
 }
 
+void cleanScreens() {
+  for(int i = 0; i < 50; i++){
+    screenAux1[i] = B00000000;
+    screenAux2[i] = B00000000;
+    screenAux3[i] = B00000000;
+    screenAux4[i] = B00000000;
+    screenAux5[i] = B00000000;
+    screenAux6[i] = B00000000;
+  }
+  for(int i = 0; i < 8; i++){
+    screen1[i] = B00000000;
+    screen2[i] = B00000000;
+    screen3[i] = B00000000;
+    screen4[i] = B00000000;
+    screen5[i] = B00000000;
+    screen6[i] = B00000000;
+  }
+  sizeFilled = 0;
+}
+
 void loop() {
   // put your main code here, to run repeatedly:
     fill();
     cleanScreens();
 }
 
-void fill(){
+void fill() {
   //Llenar Matriz general con el mensaje
-  for(int i = 0; i < 4; i++){
+  for(int i = 0; i < 6; i++){
     if(i == 1){
       for(int j = 0; j < 8; j++){
-        screenAux1[sizeFilled] = hA[j];
-        screenAux2[sizeFilled] = hA[j];
-        screenAux3[sizeFilled] = hA[j];
+        screenAux1[sizeFilled] = A_38[j];
+        screenAux2[sizeFilled] = A_38[j];
+        screenAux3[sizeFilled] = A_38[j];
 
-        screenAux4[sizeFilled] = hB[j];
-        screenAux5[sizeFilled] = hB[j];
-        screenAux6[sizeFilled] = hB[j];
+        screenAux4[sizeFilled] = B_38[j];
+        screenAux5[sizeFilled] = B_38[j];
+        screenAux6[sizeFilled] = B_38[j];
         sizeFilled++;
       }
     }else if(i == 2){
       for(int j = 0; j < 8; j++){
-        screenAux1[sizeFilled] = oA[j];
-        screenAux2[sizeFilled] = oA[j];
-        screenAux3[sizeFilled] = oA[j];
+        screenAux1[sizeFilled] = A_39[j];
+        screenAux2[sizeFilled] = A_39[j];
+        screenAux3[sizeFilled] = A_39[j];
 
-        screenAux4[sizeFilled] = oB[j];
-        screenAux5[sizeFilled] = oB[j];
-        screenAux6[sizeFilled] = oB[j];
+        screenAux4[sizeFilled] = B_39[j];
+        screenAux5[sizeFilled] = B_39[j];
+        screenAux6[sizeFilled] = B_39[j];
         sizeFilled++;
       }
     }else if(i == 3){
       for(int j = 0; j < 8; j++){
-        screenAux1[sizeFilled] = lA[j];
-        screenAux2[sizeFilled] = lA[j];
-        screenAux3[sizeFilled] = lA[j];
+        screenAux1[sizeFilled] = A_40[j];
+        screenAux2[sizeFilled] = A_40[j];
+        screenAux3[sizeFilled] = A_40[j];
 
-        screenAux4[sizeFilled] = lB[j];
-        screenAux5[sizeFilled] = lB[j];
-        screenAux6[sizeFilled] = lB[j];
+        screenAux4[sizeFilled] = B_40[j];
+        screenAux5[sizeFilled] = B_40[j];
+        screenAux6[sizeFilled] = B_40[j];
         sizeFilled++;
       }
     }else if(i == 4){
       for(int j = 0; j < 8; j++){
-        screenAux1[sizeFilled] = aA[j];
-        screenAux2[sizeFilled] = aA[j];
-        screenAux3[sizeFilled] = aA[j];
+        screenAux1[sizeFilled] = A_37[j];
+        screenAux2[sizeFilled] = A_37[j];
+        screenAux3[sizeFilled] = A_37[j];
 
-        screenAux4[sizeFilled] = aB[j];
-        screenAux5[sizeFilled] = aB[j];
-        screenAux6[sizeFilled] = aB[j];
+        screenAux4[sizeFilled] = B_37[j];
+        screenAux5[sizeFilled] = B_37[j];
+        screenAux6[sizeFilled] = B_37[j];
+        sizeFilled++;
+      }
+    } else if(i == 5){
+      for(int j = 0; j < 8; j++){
+        screenAux1[sizeFilled] = A_36[j];
+        screenAux2[sizeFilled] = A_36[j];
+        screenAux3[sizeFilled] = A_36[j];
+
+        screenAux4[sizeFilled] = B_36[j];
+        screenAux5[sizeFilled] = B_36[j];
+        screenAux6[sizeFilled] = B_36[j];
         sizeFilled++;
       }
     }
@@ -144,7 +175,7 @@ void fill(){
   animateText();
 }
 
-void animateText(){
+void animateText() {
   //int sizeCompleteText = sizeof(completeTextA)/sizeof(completeTextA[0]);
   for(int i = 0; i < sizeFilled + 32; i++){
     //Mostrar matriz 
@@ -205,25 +236,7 @@ void animateText(){
   }
 }
 
-void cleanScreens(){
-  for(int i = 0; i < 50; i++){
-    screenAux1[i] = B00000000;
-    screenAux2[i] = B00000000;
-    screenAux3[i] = B00000000;
-    screenAux4[i] = B00000000;
-    screenAux5[i] = B00000000;
-    screenAux6[i] = B00000000;
-  }
-  for(int i = 0; i < 8; i++){
-    screen1[i] = B00000000;
-    screen2[i] = B00000000;
-    screen3[i] = B00000000;
-    screen4[i] = B00000000;
-    screen5[i] = B00000000;
-    screen6[i] = B00000000;
-  }
-  sizeFilled = 0;
-}
+
 
 /*void animateText(){
   for(int i = 0; i < 32; i++){
