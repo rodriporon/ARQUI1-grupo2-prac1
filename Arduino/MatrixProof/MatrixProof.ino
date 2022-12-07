@@ -117,57 +117,57 @@ void fill() {
   for(int i = 0; i < 6; i++){
     if(i == 1){
       for(int j = 0; j < 8; j++){
-        screenAux1[sizeFilled] = A_38[j];
-        screenAux2[sizeFilled] = A_38[j];
-        screenAux3[sizeFilled] = A_38[j];
+        screenAux1[sizeFilled] = A_46[j];
+        screenAux2[sizeFilled] = A_46[j];
+        screenAux3[sizeFilled] = A_46[j];
 
-        screenAux4[sizeFilled] = B_38[j];
-        screenAux5[sizeFilled] = B_38[j];
-        screenAux6[sizeFilled] = B_38[j];
+        screenAux4[sizeFilled] = B_46[j];
+        screenAux5[sizeFilled] = B_46[j];
+        screenAux6[sizeFilled] = B_46[j];
         sizeFilled++;
       }
     }else if(i == 2){
       for(int j = 0; j < 8; j++){
-        screenAux1[sizeFilled] = A_39[j];
-        screenAux2[sizeFilled] = A_39[j];
-        screenAux3[sizeFilled] = A_39[j];
+        screenAux1[sizeFilled] = A_47[j];
+        screenAux2[sizeFilled] = A_47[j];
+        screenAux3[sizeFilled] = A_47[j];
 
-        screenAux4[sizeFilled] = B_39[j];
-        screenAux5[sizeFilled] = B_39[j];
-        screenAux6[sizeFilled] = B_39[j];
+        screenAux4[sizeFilled] = B_47[j];
+        screenAux5[sizeFilled] = B_47[j];
+        screenAux6[sizeFilled] = B_47[j];
         sizeFilled++;
       }
     }else if(i == 3){
       for(int j = 0; j < 8; j++){
-        screenAux1[sizeFilled] = A_40[j];
-        screenAux2[sizeFilled] = A_40[j];
-        screenAux3[sizeFilled] = A_40[j];
+        screenAux1[sizeFilled] = A_48[j];
+        screenAux2[sizeFilled] = A_48[j];
+        screenAux3[sizeFilled] = A_48[j];
 
-        screenAux4[sizeFilled] = B_40[j];
-        screenAux5[sizeFilled] = B_40[j];
-        screenAux6[sizeFilled] = B_40[j];
+        screenAux4[sizeFilled] = B_48[j];
+        screenAux5[sizeFilled] = B_48[j];
+        screenAux6[sizeFilled] = B_48[j];
         sizeFilled++;
       }
     }else if(i == 4){
       for(int j = 0; j < 8; j++){
-        screenAux1[sizeFilled] = A_37[j];
-        screenAux2[sizeFilled] = A_37[j];
-        screenAux3[sizeFilled] = A_37[j];
+        screenAux1[sizeFilled] = A_49[j];
+        screenAux2[sizeFilled] = A_49[j];
+        screenAux3[sizeFilled] = A_49[j];
 
-        screenAux4[sizeFilled] = B_37[j];
-        screenAux5[sizeFilled] = B_37[j];
-        screenAux6[sizeFilled] = B_37[j];
+        screenAux4[sizeFilled] = B_49[j];
+        screenAux5[sizeFilled] = B_49[j];
+        screenAux6[sizeFilled] = B_49[j];
         sizeFilled++;
       }
     } else if(i == 5){
       for(int j = 0; j < 8; j++){
-        screenAux1[sizeFilled] = A_36[j];
-        screenAux2[sizeFilled] = A_36[j];
-        screenAux3[sizeFilled] = A_36[j];
+        screenAux1[sizeFilled] = A_50[j];
+        screenAux2[sizeFilled] = A_50[j];
+        screenAux3[sizeFilled] = A_50[j];
 
-        screenAux4[sizeFilled] = B_36[j];
-        screenAux5[sizeFilled] = B_36[j];
-        screenAux6[sizeFilled] = B_36[j];
+        screenAux4[sizeFilled] = B_50[j];
+        screenAux5[sizeFilled] = B_50[j];
+        screenAux6[sizeFilled] = B_50[j];
         sizeFilled++;
       }
     }
