@@ -192,8 +192,45 @@ void fill(char textArray[]) {
       single(A_87, B_87);
     } else if (singleSymbol == 'X') {//Ascii (70-88) Fin
       single(A_88, B_88);
+    }else if (singleSymbol == 'Y') {//Ascii (89-107) Inicio
+      single(A_89, B_89);
+    }else if (singleSymbol == 'Z') {
+      single(A_90, B_90);
+    }else if (singleSymbol == '[') {
+      single(A_91, B_91);
+    }else if (singleSymbol == '\\') {
+      single(A_92, B_92);
+    }else if (singleSymbol == ']') {
+      single(A_93, B_93);
+    }else if (singleSymbol == '^') {
+      single(A_94, B_94);
+    }else if (singleSymbol == '_') {
+      single(A_95, B_95);
+    }else if (singleSymbol == '`') {
+      single(A_96, B_96);
+    }else if (singleSymbol == 'a') {
+      single(A_97, B_97);
+    }else if (singleSymbol == 'b') {
+      single(A_98, B_98);
+    }else if (singleSymbol == 'c') {
+      single(A_99, B_99);
+    }else if (singleSymbol == 'd') {
+      single(A_100, B_100);
+    }else if (singleSymbol == 'e') {
+      single(A_101, B_101);
+    }else if (singleSymbol == 'f') {
+      single(A_102, B_102);
+    }else if (singleSymbol == 'g') {
+      single(A_103, B_103);
+    }else if (singleSymbol == 'h') {
+      single(A_104, B_104);
+    }else if (singleSymbol == 'i') {
+      single(A_105, B_105);
+    }else if (singleSymbol == 'j') {
+      single(A_106, B_106);
+    }else if (singleSymbol == 'k') {//Ascii (89-107) Fin
+      single(A_107, B_107);
     }
-    
       //Ascii (108-126) Inicio
       else if (singleSymbol == 'l') {
       single(A_108, B_108);
