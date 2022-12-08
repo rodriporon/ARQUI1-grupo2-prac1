@@ -190,8 +190,51 @@ void fill(char textArray[]) {
       single(A_86, B_86);
     } else if (singleSymbol == 'W') {
       single(A_87, B_87);
-    } else if (singleSymbol == 'X') {//Ascii (70-88) Inicio
+    } else if (singleSymbol == 'X') {//Ascii (70-88) Fin
       single(A_88, B_88);
+    }
+    
+      //Ascii (108-126) Inicio
+      else if (singleSymbol == 'l') {
+      single(A_108, B_108);
+    } else if (singleSymbol == 'm') {
+      single(A_32, B_109);
+    } else if (singleSymbol == 'n') {
+      single(A_32, B_110);
+    } else if (singleSymbol == 'o') {
+      single(A_32, B_111);
+    } else if (singleSymbol == 'p') {
+      single(A_32, B_112);
+    } else if (singleSymbol == 'q') {
+      single(A_32, B_113);
+    } else if (singleSymbol == 'r') {
+      single(A_32, B_114);
+    } else if (singleSymbol == 's') {
+      single(A_32, B_115);
+    } else if (singleSymbol == 't') {
+      single(A_116, B_116);
+    } else if (singleSymbol == 'u') {
+      single(A_32, B_117);
+    } else if (singleSymbol == 'v') {
+      single(A_32, B_118);
+    } else if (singleSymbol == 'w') {
+      single(A_32, B_119);
+    } else if (singleSymbol == 'x') {
+      single(A_32, B_120);
+    } else if (singleSymbol == 'y') {
+      single(A_32, B_121);
+    } else if (singleSymbol == 'z') {
+      single(A_32, B_122);
+    } else if (singleSymbol == '{') {
+      single(A_123, B_123);
+    } else if (singleSymbol == '|') {
+      single(A_124, B_124);
+    } else if (singleSymbol == '}') {
+      single(A_125, B_125);
+    } else if (singleSymbol == '~') {
+      single(A_32, B_126);
+    } else if (singleSymbol == 'ñ') {
+      single(A_enhe, B_enhe);
     }
   }
   animateText();
