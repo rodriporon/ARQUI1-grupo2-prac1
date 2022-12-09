@@ -103,6 +103,7 @@ public class Interfaz extends javax.swing.JFrame {
         try {
             String message = jTextArea1.getText();
             Arduino.sendData(message);
+            System.out.println(message);
         } catch (ArduinoException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SerialPortException ex) {

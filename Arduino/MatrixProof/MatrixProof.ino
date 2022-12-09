@@ -1,7 +1,9 @@
 #include "LedControl.h"
 #include "Symbols.h"
-#define iterationDelay 300
-#define LED 2
+#define iterationDelay 200
+#define CLED 8
+#define BSTART 3
+#define BFINISH 2
 
 LedControl lc = LedControl(11, 13, 10, 6);  //(Pin digital, Pin reloj, Pin CS, No de dispositivos) -> (DIN,CLK,CS,1-8)
 byte screen1[8] = {
@@ -78,12 +80,18 @@ byte screenAux5[500];
 byte screenAux6[500];
 int sizeFilled = 0;
 int textSize = 0;
+String completeText = "";
+int bStartState = 0;
+int bFinishState = 0;
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(LED, OUTPUT);
-  digitalWrite(LED, LOW);
+  Serial1.begin(9600);
+  pinMode(BSTART, INPUT);
+  pinMode(BFINISH, INPUT);
+  pinMode(CLED, OUTPUT);
+  digitalWrite(CLED, LOW);
   for (int i = 0; i < 6; i++) {
     lc.shutdown(i, false);  //(No de dispositivo, estado inicial)
     lc.setIntensity(i, 4);  //(No de dispositivo, intensidad de luz)
@@ -92,20 +100,31 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  bStartState = digitalRead(BSTART);
 
-  if (Serial.available()) {
-    String completeText = Serial.readStringUntil('\n');
-
-    if (completeText != "") {
-      textSize = completeText.length();
-      char textArray[textSize + 1];
-      completeText.toCharArray(textArray, textSize + 1);
-      fill(textArray);
-      cleanScreens();
+  if (completeText == "") {
+    if (Serial.available()) {
+      completeText = Serial.readStringUntil('\n');
     }
-
+  } else {
+    digitalWrite(CLED, HIGH);
   }
+
+
+
+
+  if (bStartState == HIGH && completeText != "") {
+    start();
+  }
+}
+
+void start() {
+  Serial1.println(completeText);
+  textSize = completeText.length();
+  char textArray[textSize + 1];
+  completeText.toCharArray(textArray, textSize + 1);
+  fill(textArray);
+  cleanScreens();
 }
 
 void fill(char textArray[]) {
@@ -154,7 +173,7 @@ void fill(char textArray[]) {
       single(A_51, B_51);
     } else if (singleSymbol == 'A') {
       single(A_65, B_65);
-    } else if (singleSymbol == 'F') {//Ascii (70-88) Inicio
+    } else if (singleSymbol == 'F') {  //Ascii (70-88) Inicio
       single(A_70, B_70);
     } else if (singleSymbol == 'G') {
       single(A_71, B_71);
@@ -190,49 +209,49 @@ void fill(char textArray[]) {
       single(A_86, B_86);
     } else if (singleSymbol == 'W') {
       single(A_87, B_87);
-    } else if (singleSymbol == 'X') {//Ascii (70-88) Fin
+    } else if (singleSymbol == 'X') {  //Ascii (70-88) Fin
       single(A_88, B_88);
-    }else if (singleSymbol == 'Y') {//Ascii (89-107) Inicio
+    } else if (singleSymbol == 'Y') {  //Ascii (89-107) Inicio
       single(A_89, B_89);
-    }else if (singleSymbol == 'Z') {
+    } else if (singleSymbol == 'Z') {
       single(A_90, B_90);
-    }else if (singleSymbol == '[') {
+    } else if (singleSymbol == '[') {
       single(A_91, B_91);
-    }else if (singleSymbol == '\\') {
+    } else if (singleSymbol == '\\') {
       single(A_92, B_92);
-    }else if (singleSymbol == ']') {
+    } else if (singleSymbol == ']') {
       single(A_93, B_93);
-    }else if (singleSymbol == '^') {
+    } else if (singleSymbol == '^') {
       single(A_94, B_94);
-    }else if (singleSymbol == '_') {
+    } else if (singleSymbol == '_') {
       single(A_95, B_95);
-    }else if (singleSymbol == '`') {
+    } else if (singleSymbol == '`') {
       single(A_96, B_96);
-    }else if (singleSymbol == 'a') {
+    } else if (singleSymbol == 'a') {
       single(A_97, B_97);
-    }else if (singleSymbol == 'b') {
+    } else if (singleSymbol == 'b') {
       single(A_98, B_98);
-    }else if (singleSymbol == 'c') {
+    } else if (singleSymbol == 'c') {
       single(A_99, B_99);
-    }else if (singleSymbol == 'd') {
+    } else if (singleSymbol == 'd') {
       single(A_100, B_100);
-    }else if (singleSymbol == 'e') {
+    } else if (singleSymbol == 'e') {
       single(A_101, B_101);
-    }else if (singleSymbol == 'f') {
+    } else if (singleSymbol == 'f') {
       single(A_102, B_102);
-    }else if (singleSymbol == 'g') {
+    } else if (singleSymbol == 'g') {
       single(A_103, B_103);
-    }else if (singleSymbol == 'h') {
+    } else if (singleSymbol == 'h') {
       single(A_104, B_104);
-    }else if (singleSymbol == 'i') {
+    } else if (singleSymbol == 'i') {
       single(A_105, B_105);
-    }else if (singleSymbol == 'j') {
+    } else if (singleSymbol == 'j') {
       single(A_106, B_106);
-    }else if (singleSymbol == 'k') {//Ascii (89-107) Fin
+    } else if (singleSymbol == 'k') {  //Ascii (89-107) Fin
       single(A_107, B_107);
     }
-      //Ascii (108-126) Inicio
-      else if (singleSymbol == 'l') {
+    //Ascii (108-126) Inicio
+    else if (singleSymbol == 'l') {
       single(A_108, B_108);
     } else if (singleSymbol == 'm') {
       single(A_32, B_109);
@@ -293,6 +312,16 @@ void single(byte A[], byte B[]) {
 void animateText() {
   //int sizeCompleteText = sizeof(completeTextA)/sizeof(completeTextA[0]);
   for (int i = 0; i < sizeFilled + 32; i++) {
+    bFinishState = digitalRead(BFINISH);
+    if (bFinishState == HIGH) {
+      Serial1.println("FINISH");
+      digitalWrite(CLED, LOW);
+      completeText = "";
+      sizeFilled = 0;
+      textSize = 0;
+      cleanScreens();
+      break;
+    }
     //Mostrar matriz
     for (int j = 0; j < 8; j++) {
       lc.setRow(0, j, screen1[j]);  //(No de dispositivo, fila, valor)
@@ -352,7 +381,7 @@ void animateText() {
 }
 
 void cleanScreens() {
-  for (int i = 0; i < 50; i++) {
+  for (int i = 0; i < 500; i++) {
     screenAux1[i] = B00000000;
     screenAux2[i] = B00000000;
     screenAux3[i] = B00000000;
@@ -367,6 +396,14 @@ void cleanScreens() {
     screen4[i] = B00000000;
     screen5[i] = B00000000;
     screen6[i] = B00000000;
+  }
+  for (int j = 0; j < 8; j++) {
+    lc.setRow(0, j, screen1[j]);  //(No de dispositivo, fila, valor)
+    lc.setRow(1, j, screen2[j]);  //(No de dispositivo, fila, valor)
+    lc.setRow(2, j, screen3[j]);  //(No de dispositivo, fila, valor)
+    lc.setRow(3, j, screen4[j]);  //(No de dispositivo, fila, valor)
+    lc.setRow(4, j, screen5[j]);  //(No de dispositivo, fila, valor)
+    lc.setRow(5, j, screen6[j]);  //(No de dispositivo, fila, valor)
   }
   sizeFilled = 0;
 }
